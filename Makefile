@@ -25,6 +25,8 @@ export PATH := $(PANDOC_DIR):$(PYTHON_DIR)/bin:$(PATH)
 override DEPS := $(PANDOC_DIR) $(PYTHON_DIR)
 
 override DATADIR := $(ROOTDIR)data
+override TEMPLATESDIR := $(DATADIR)/templates
+override FILTERSDIR := $(DATADIR)/filters
 
 override define PANDOC
 $(eval override FILE := $(filter %.md, $^))
@@ -38,6 +40,8 @@ $(CMD)
 endef
 
 override DEPS += $(addprefix $(DATADIR)/, defaults.yaml csl.json annex-f)
+override DEPS += $(addprefix $(TEMPLATESDIR)/, wg21.html highlighting.html) $(wildcard $(TEMPLATESDIR)/*.css)
+override DEPS += $(addprefix $(FILTERSDIR)/, wg21.py)
 $(eval $(and $(DEFAULTS), override DEPS += $(DEFAULTS)))
 $(eval $(and $(METADATA), override DEPS += $(METADATA)))
 
