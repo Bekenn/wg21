@@ -13,6 +13,7 @@ cat <<EOF
 number-sections: true
 table-of-contents: true
 self-contained: true
+shift-heading-level-by: -1
 
 data-dir: ${DATADIR}
 

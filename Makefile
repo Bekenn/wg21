@@ -30,7 +30,7 @@ override FILTERSDIR := $(DATADIR)/filters
 
 override define PANDOC
 $(eval override FILE := $(filter %.md, $^))
-$(eval override CMD := pandoc $(FILE) -o $@ --mathjax -d $(DATADIR)/defaults.yaml)
+$(eval override CMD := pandoc $(FILE) --mathjax -d $(DATADIR)/defaults.yaml)
 $(eval $(and $(DEFAULTS), override CMD += -d $(DEFAULTS)))
 $(eval $(and $(METADATA), override CMD += --metadata-file $(METADATA)))
 $(if $(filter %.html, $@),
@@ -38,6 +38,8 @@ $(if $(filter %.html, $@),
   $(eval $(and $(TOCDEPTH), override CMD += --toc-depth $(TOCDEPTH))))
 $(CMD)
 endef
+
+FIXHEADERS = $(DATADIR)/fixheaders.py
 
 override DEPS += $(addprefix $(DATADIR)/, defaults.yaml csl.json annex-f)
 override DEPS += $(addprefix $(TEMPLATESDIR)/, wg21.html highlighting.html) $(wildcard $(TEMPLATESDIR)/*.css)
@@ -90,5 +92,8 @@ $(DATADIR)/csl.json: $(DATADIR)/refs.py $(PYTHON_DIR)
 $(DATADIR)/annex-f:
 	curl -sSL https://timsong-cpp.github.io/cppwp/annex-f -o $@
 
-$(OUTDIR)/%.html $(OUTDIR)/%.latex $(OUTDIR)/%.pdf: $(SRCDIR)/%.md $(DEPS) | $(OUTDIR)
-	$(PANDOC) --bibliography $(DATADIR)/csl.json
+$(OUTDIR)/%.latex $(OUTDIR)/%.pdf: $(SRCDIR)/%.md $(DEPS) | $(OUTDIR)
+	$(PANDOC) -o $@ --bibliography $(DATADIR)/csl.json
+
+$(OUTDIR)/%.html: $(SRCDIR)/%.md $(DEPS) | $(OUTDIR)
+	$(PANDOC) --bibliography $(DATADIR)/csl.json | $(FIXHEADERS) -o $@
