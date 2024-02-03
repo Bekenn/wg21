@@ -1,0 +1,31 @@
+div.std blockquote { color: #000000; background-color: #F1F1F1;
+    border: 1px solid #D1D1D1;
+    padding-left: 0.5em; padding-right: 0.5em; }
+div.std.ins blockquote { text-decoration: underline;
+    color: #000000; background-color: #C8FFC8;
+    border: 1px solid #B3EBB3; }
+div.std.del blockquote { text-decoration: line-through;
+    color: #000000; background-color: #FFC8EB;
+    border: 1px solid #ECB3C7; }
+div.std blockquote ins { text-decoration: underline;
+    color: #000000; background-color: #C8FFC8; }
+div.std blockquote del { text-decoration: line-through;
+    color: #000000; background-color: #FFC8EB; }
+div.std div.ins { text-decoration: underline;
+    color: #000000; background-color: #C8FFC8; }
+div.std div.del { text-decoration: line-through;
+    color: #000000; background-color: #FFC8EB; }
+div.std blockquote code * { color: #000000; }
+div.std div.sourceCode { background-color: inherit; margin-left: 1em; }
+div.std div.ins div.sourceCode * { text-decoration: underline; }
+div.std div.del div.sourceCode * { text-decoration: line-through; }
+div.std.ins div.sourceCode * { text-decoration: underline; }
+div.std.del div.sourceCode * { text-decoration: line-through; }
+
+/* Undo settings from 14882.css */
+.footnote { font-size: inherit;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}

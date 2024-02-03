@@ -25,6 +25,7 @@ template: wg21
 
 css:
   - ${DATADIR}/templates/14882.css
+  - ${DATADIR}/templates/bekenn.css
 
 pdf-engine: xelatex
 
