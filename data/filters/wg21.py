@@ -334,11 +334,19 @@ def divspan(elem, doc):
         return pnum()
 
     if 'sref' in elem.classes and isinstance(elem, pf.Span):
-        target = pf.stringify(elem)
+        elemtext = pf.stringify(elem)
+        components = elemtext.split('/')
+        if len(components) > 2:
+            pf.debug('mpark/wg21: too many components in', elemtext)
+        target = components[0]
         number = stable_names.get(target)
-        link = pf.Link(
-            pf.Str(f'[{target}]'),
-            url=f'https://wg21.link/{target}')
+        text = f'[{target}]'
+        url = f'https://wg21.link/{target}'
+        if len(components) > 1:
+            anchor = components[1]
+            text += f'/{anchor}'
+            url += f'#{anchor}'
+        link = pf.Link(pf.Str(text), url=url)
         if number is not None:
             return pf.Span(pf.Str(number), pf.Space(), link)
         else:
