@@ -319,6 +319,7 @@ def divspan(elem, doc):
 
     def example(): _nonnormative('example')
     def note():    _nonnormative('note')
+    def footnote(): _nonnormative('footnote')
     def ednote():
         wrap_elem(pf.Str("[ Editor's note: "), elem, pf.Str(' ]'))
         _color('0000ff')
@@ -344,9 +345,10 @@ def divspan(elem, doc):
             pf.debug('mpark/wg21: stable name', target, 'not found')
             return link
 
-    note_cls = next(iter(cls for cls in elem.classes if cls in {'example', 'note', 'ednote'}), None)
+    note_cls = next(iter(cls for cls in elem.classes if cls in {'example', 'note', 'footnote', 'ednote'}), None)
     if note_cls == 'example':  example()
     elif note_cls == 'note':   note()
+    elif note_cls == 'footnote': footnote()
     elif note_cls == 'ednote': ednote(); return
 
     diff_cls = next(iter(cls for cls in elem.classes if cls in {'add', 'rm'}), None)
