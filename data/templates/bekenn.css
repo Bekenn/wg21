@@ -1,3 +1,6 @@
+code ins { border: 1px solid #B3EBB3; padding-bottom: 1px; }
+code del { border: 1px solid #ECB3C7; }
+
 div.std blockquote { color: #000000; background-color: #F1F1F1;
     border: 1px solid #D1D1D1;
     padding-left: 0.5em; padding-right: 0.5em; }
@@ -8,9 +11,11 @@ div.std.del blockquote { text-decoration: line-through;
     color: #000000; background-color: #FFC8EB;
     border: 1px solid #ECB3C7; }
 div.std blockquote ins { text-decoration: underline;
-    color: #000000; background-color: #C8FFC8; }
+    color: #000000; background-color: #C8FFC8;
+    border: none; }
 div.std blockquote del { text-decoration: line-through;
-    color: #000000; background-color: #FFC8EB; }
+    color: #000000; background-color: #FFC8EB;
+    border: none; }
 div.std div.ins { text-decoration: underline;
     color: #000000; background-color: #C8FFC8; }
 div.std div.del { text-decoration: line-through;
